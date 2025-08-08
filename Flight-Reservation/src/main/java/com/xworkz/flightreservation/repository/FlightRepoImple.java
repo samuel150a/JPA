@@ -3,6 +3,7 @@ package com.xworkz.flightreservation.repository;
 import com.xworkz.flightreservation.entity.FlightEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class FlightRepoImple implements FlightRepo {
 
@@ -121,39 +122,74 @@ public class FlightRepoImple implements FlightRepo {
         }
     }
 
-    @Override
-    public FlightEntity getFlightEntityByPrice(Integer price) {
-        try {
-            emf = Persistence.createEntityManagerFactory("x-workz");
-            em = emf.createEntityManager();
-            return (FlightEntity) em.createNamedQuery("price").setParameter("price", price).getSingleResult();
-        } finally {
-            if (emf != null) emf.close();
-            if (em != null) em.close();
-        }
-    }
 
     @Override
     public FlightEntity getFlightEntityByDestination(String destination) {
+        System.out.println("running in the getFlightEntityByDestination");
+        FlightEntity FlightEntityByDestination = null;
         try {
             emf = Persistence.createEntityManagerFactory("x-workz");
+            System.out.println("connection created");
             em = emf.createEntityManager();
-            return (FlightEntity) em.createNamedQuery("destination").setParameter("destination", destination).getSingleResult();
+            Query query = em.createNamedQuery("getDestination");
+            FlightEntityByDestination = (FlightEntity) query.setParameter("destination", destination).getSingleResult();
+            System.out.println(FlightEntityByDestination);
+            return FlightEntityByDestination;
+        } catch (PersistenceException e) {
+            System.out.println("Exception has been found");
+            System.out.println(e.getMessage());
+            //e.printStackTrace();
         } finally {
             if (emf != null) emf.close();
             if (em != null) em.close();
         }
+        return FlightEntityByDestination;
     }
 
     @Override
     public FlightEntity getFlightEntityByAirport(String airport) {
+        System.out.println("Running in the getFlightEntityByAirport");
+        FlightEntity flightEntityByAirport = null;
         try {
             emf = Persistence.createEntityManagerFactory("x-workz");
             em = emf.createEntityManager();
-            return (FlightEntity) em.createNamedQuery("airport").setParameter("airport", airport).getSingleResult();
+            Query query = em.createNamedQuery("getAirport");
+            flightEntityByAirport = (FlightEntity) query.setParameter("airport", airport).getSingleResult();
+            System.out.println(flightEntityByAirport);
+            return flightEntityByAirport;
+        } catch (PersistenceException e) {
+            System.out.println("Exception has been found");
+            System.out.println(e.getMessage());
+            //e.printStackTrace();
         } finally {
             if (emf != null) emf.close();
             if (em != null) em.close();
         }
+
+
+        return flightEntityByAirport;
     }
+
+    @Override
+    public List<FlightEntity> getFlightEntityByPrice(Integer price) {
+        System.out.println("running in getFlightEntityByPrice ");
+        List<FlightEntity> flightEntityByPrice=null;
+        try {
+            emf = Persistence.createEntityManagerFactory("x-workz");
+            em = emf.createEntityManager();
+            Query query = em.createNamedQuery("getPrice");
+            flightEntityByPrice = query.getResultList();
+            return flightEntityByPrice;
+        }
+            catch (PersistenceException e) {
+                System.out.println("Exception has been found");
+                System.out.println(e.getMessage());
+                //e.printStackTrace();
+        } finally {
+            if (emf != null) emf.close();
+            if (em != null) em.close();
+        }
+        return flightEntityByPrice;
+    }
+
 }

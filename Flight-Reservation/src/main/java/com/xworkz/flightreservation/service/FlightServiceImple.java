@@ -4,6 +4,9 @@ import com.xworkz.flightreservation.entity.FlightEntity;
 import com.xworkz.flightreservation.repository.FlightRepo;
 import com.xworkz.flightreservation.repository.FlightRepoImple;
 
+import java.util.Collections;
+import java.util.List;
+
 public class FlightServiceImple implements FlightService {
     FlightRepo flightRepo = new FlightRepoImple();
 
@@ -47,10 +50,7 @@ public class FlightServiceImple implements FlightService {
         return flightRepo.getFlightEntityByPersonName(personName);
     }
 
-    @Override
-    public FlightEntity getFlightEntityByPrice(Integer price) {
-        return flightRepo.getFlightEntityByPrice(price);
-    }
+
 
     @Override
     public FlightEntity getFlightEntityByDestination(String destination) {
@@ -60,5 +60,10 @@ public class FlightServiceImple implements FlightService {
     @Override
     public FlightEntity getFlightEntityByAirport(String airport) {
         return flightRepo.getFlightEntityByAirport(airport);
+    }
+
+    @Override
+    public List<FlightEntity> getFlightEntityByPrice(Integer price) {
+        return flightRepo.getFlightEntityByPrice(price);
     }
 }

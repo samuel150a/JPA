@@ -13,11 +13,13 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @ToString
 @Table(name = "flight")
-@NamedQuery(name = "airlines", query = "select f from FlightEntity f where f.airlines = :airlines")
-@NamedQuery(name = "personName", query = "select f from FlightEntity f where f.personName = :personName")
-@NamedQuery(name = "price", query = "select f from FlightEntity f where f.price = :price")
-@NamedQuery(name = "destination", query = "select f from FlightEntity f where f.destination = :destination")
-@NamedQuery(name = "airport", query = "select f from FlightEntity f where f.airport = :airport")
+//@NamedQuery(name = "airlines", query = "select f from FlightEntity f where f.airlines = :airlines")
+//@NamedQuery(name = "personName", query = "select f from FlightEntity f where f.personName = :personName")
+//@NamedQuery(name = "price", query = "select f from FlightEntity f where f.price = :price")
+@NamedQuery(name = "getDestination", query = "select d from FlightEntity d where d.destination = :destination")
+@NamedQuery(name = "getAirport", query = "select a from FlightEntity a where a.airport = :airport")
+@NamedQuery(name = "getPrice", query = "select f from FlightEntity f where f.price = '6500'")
+
 public class FlightEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

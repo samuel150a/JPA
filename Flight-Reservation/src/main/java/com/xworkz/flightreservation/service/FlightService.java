@@ -2,6 +2,8 @@ package com.xworkz.flightreservation.service;
 
 import com.xworkz.flightreservation.entity.FlightEntity;
 
+import java.util.List;
+
 public interface FlightService {
     public FlightEntity validation(FlightEntity en);
     public void savedFlight(FlightEntity entity);
@@ -10,7 +12,12 @@ public interface FlightService {
     public FlightEntity deleteFlight(FlightEntity entity);
     public FlightEntity getFlightEntityByAirlines(String airlines);
     public FlightEntity getFlightEntityByPersonName(String personName);
-    public FlightEntity getFlightEntityByPrice(Integer price);
+
+
+
+    //4 methods
     public FlightEntity getFlightEntityByDestination(String destination);
     public FlightEntity getFlightEntityByAirport(String airport);
+    public List<FlightEntity> getFlightEntityByPrice(Integer price);
+
 }

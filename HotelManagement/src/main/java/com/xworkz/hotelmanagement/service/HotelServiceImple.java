@@ -4,6 +4,9 @@ import com.xworkz.hotelmanagement.entity.HotelEntity;
 import com.xworkz.hotelmanagement.repository.HotelRepo;
 import com.xworkz.hotelmanagement.repository.HotelRepoImple;
 
+import java.util.Collections;
+import java.util.List;
+
 public class HotelServiceImple implements HotelService {
     HotelRepo hotelRepo = new HotelRepoImple();
 
@@ -43,15 +46,9 @@ public class HotelServiceImple implements HotelService {
         return hotelRepo.getHotelEntityByName(name);
     }
 
-    @Override
-    public HotelEntity getHotelEntityByDish(String dish) {
-        return hotelRepo.getHotelEntityByDish(dish);
-    }
 
-    @Override
-    public HotelEntity getHotelEntityByPrice(Integer price) {
-        return hotelRepo.getHotelEntityByPrice(price);
-    }
+
+
 
     @Override
     public HotelEntity getHotelEntityByBill(boolean bill) {
@@ -61,5 +58,30 @@ public class HotelServiceImple implements HotelService {
     @Override
     public HotelEntity getHotelEntityByFeedback(String feedback) {
         return hotelRepo.getHotelEntityByFeedback(feedback);
+    }
+    @Override
+    public List<HotelEntity> getHotelEntityByDish(String dish) {
+        return hotelRepo.getHotelEntityByDish(dish);
+    }
+
+
+    @Override
+    public List<HotelEntity> getHotelEntityByPrice(Integer price) {
+        return hotelRepo.getHotelEntityByPrice(price);
+    }
+
+    @Override
+    public HotelEntity updateTheDish(String updatedish, String name, Integer id) {
+        return hotelRepo.updateTheDish(updatedish,name,id);
+    }
+
+    @Override
+    public HotelEntity updateTheName(String updatedName, String dish, Integer id) {
+        return hotelRepo.updateTheName(updatedName,dish,id);
+    }
+
+    @Override
+    public HotelEntity UpdateThePrice(Integer updatedPrice, String feedback, Integer id) {
+        return hotelRepo.UpdateThePrice(updatedPrice,feedback,id);
     }
 }
